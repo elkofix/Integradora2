@@ -1,9 +1,8 @@
 package ui;
 
-import model.VideoGame;
-
-import java.lang.StackWalker.Option;
 import java.util.Scanner;
+
+import model.VideoGame;
 
 public class Main{
 
@@ -26,7 +25,7 @@ public class Main{
         int option = 0;
         System.out.println("<<Bienvenido a "+videoGame.getName()+" >> \n"+
         "1. Crear jugador \n"+
-        "2. Registra enemigo a un nivel \n"+´
+        "2. Registra enemigo a un nivel \n"+
         "3. Modificar el puntaje de un jugador \n"+
         "4. Subir de nivel a un jugador");
         option = reader.nextInt();
@@ -37,7 +36,7 @@ public class Main{
      
         switch(option){
             case 1:
-                
+
             break;
 
             case 2: 
