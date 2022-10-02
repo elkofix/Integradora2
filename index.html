@@ -1,0 +1,151 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Encriptador Alura</title>
+    <link rel="stylesheet" href="reset.css">
+    <link rel="stylesheet" href="style.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter+Tight&display=swap" rel="stylesheet">
+</head>
+<body>
+    <header>
+        <img src="recursos/Vector.png" class="imagen-encabezado">
+    </header>
+    <div class="content">
+        <div class="entrada-de-texto">
+            <input type="text" name="encriptador" id="encriptador" placeholder="Ingrese el texto aqui" autofocus required>
+            <div class="tab">
+
+                <img src="recursos/advert.png" alt="">
+                <p>Solo letras minúsculas y sin acentos</p>
+                <div class="botones">
+                    <button value="Encriptar" class="encriptar" onclick="getValueInput()">Encriptar</button>
+                    <button name="" value="Desencriptar" class="desencriptar" onclick="getValueInput2()">Desencriptar</button>
+                </div>
+            </div>
+        </div>
+        <div class="historial">   
+            <div  id="historial">
+                <li id="lista-encriptados">
+
+                </li>
+                <img src="recursos/Muñeco.png" alt="" id="holder1">
+                <p id="holder2">Ningún mensaje fue<br> encontrado</p>
+                <p id="holder3">Ingresa el texto que desees encriptar o<br> desencriptar.</p>
+            </div>    
+        </div>
+    </div>
+</body>
+
+<script>
+    var frases = 0;
+    const getValueInput = () =>{
+      var inputValue = document.getElementById("encriptador").value; 
+      document.getElementById("encriptador").innerHTML = inputValue;
+      console.log(inputValue);
+     
+
+      
+        if(frases<1 && inputValue!=""){
+            eliminar();
+        }
+        if(inputValue!=""){
+            encriptar(inputValue);
+            frases+=1
+        } 
+      }
+    
+ 
+    const getValueInput2 = () =>{
+      var inputValue = document.getElementById("encriptador").value; 
+      document.getElementById("encriptador").innerHTML = inputValue;
+      
+         if(frases<1 && inputValue!=""){
+              eliminar();
+          } 
+         if(inputValue!=""){
+            desencriptar(inputValue);
+        frases+=1
+        }
+      }
+   
+
+    function encriptar(texto){
+        texto= texto.toLowerCase();
+        let encriptado = "";
+        let matrizAcento = [["a","á"],["e","é"],["i","í"],["o","ó"],["u","ú"]];
+        for (i=0 ; i < matrizAcento.length ; i++){
+            if(texto.includes(matrizAcento[i][1])){
+                texto = texto.replaceAll(matrizAcento[i][1],matrizAcento[i][0]);
+            }
+        } 
+       for(i=1; i<texto.length+1; i++){
+           if(texto.substring(i-1,i)!= "a" && "e" &&  "i" && "u" && "o"){
+                encriptado = encriptado+texto.substring(i-1,i);
+           }
+           if(texto.substring(i-1,i)== "a"){
+                encriptado = encriptado+"ai";
+           }
+           if(texto.substring(i-1,i)== "e"){
+                encriptado = encriptado+"nter";
+           }
+           if(texto.substring(i-1,i)== "i"){
+                encriptado = encriptado+"mes";
+           }
+           if(texto.substring(i-1,i)== "o"){
+                encriptado = encriptado+"ber";
+           }
+           if(texto.substring(i-1,i)== "u"){
+                encriptado = encriptado+"fat";
+           }
+        }
+  
+        añadir(encriptado);
+    }
+
+    function desencriptar(texto){
+        texto = texto.toLowerCase();
+        let matrizAcento = [["a","á"],["e","é"],["i","í"],["o","ó"],["u","ú"]];
+        for (i=0 ; i < matrizAcento.length ; i++){
+            if(texto.includes(matrizAcento[i][1])){
+                texto = texto.replaceAll(matrizAcento[i][1],matrizAcento[i][0]);
+            }
+        } 
+        let matrizEncrip = [["a","ai"],["e","enter"],["i","imes"],["o","ober"],["u","ufat"]];
+        for (i=0 ; i < matrizEncrip.length ; i++){
+            if(texto.includes(matrizEncrip[i][1])){
+                texto = texto.replaceAll(matrizEncrip[i][1],matrizEncrip[i][0]);
+            }
+        } 
+    
+        añadir(texto);
+           
+    }
+
+    function eliminar(){
+        let d = document.getElementById("historial");
+        let d_child = document.getElementById("holder1");
+        let d_child2 = document.getElementById("holder2");
+        let d_child3 = document.getElementById("holder3");
+        let node = d.removeChild(d_child);
+        let node2 = d.removeChild(d_child2);
+        let node3 = d.removeChild(d_child3);
+
+    }
+
+    function añadir(textoEncriptado){
+        const li = document.createElement("li");
+        li.setAttribute("class", "item-encriptado");
+        li.innerHTML =textoEncriptado;
+        
+
+        const $contenedor = document.getElementById("historial");
+        $contenedor.append(li);
+    }
+
+</script>
+</html>

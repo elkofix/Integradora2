@@ -1,5 +1,7 @@
 package model;
 
+import java.util.ArrayList;
+
 public class VideoGame {
     private String name;
     private Canvas canvas;
@@ -87,7 +89,7 @@ public class VideoGame {
 	 * @param level
 	 * @param Enemy
 	 */
-	public String addEnemyToLevel(Enemy enemy, String levelid) {
+	public String addEnemyToLevel(Enemy enemy, String levelid, int type) {
 		int pos = searchLevelById(levelid);
 		boolean isRepeated;
         int enemyPos;
@@ -101,6 +103,7 @@ public class VideoGame {
             	if(enemyPos ==-1){
                 	msj = "La capacidad de enemigos esta en su limite";
            		}else{
+					enemy.setType(giveType(type));
                 	canvas.getLevels()[pos].getEnemies()[enemyPos]=enemy;
 					canvas.getLevels()[pos].calculateDifficulty();
                 	msj = "Enemigo agregado";
@@ -146,9 +149,8 @@ public class VideoGame {
         return msj;
 	}
 
-	public Player[] calculateTop5() {
-		// TODO - implement VideoGame.calculateTop5
-		throw new UnsupportedOperationException();
+	public String calculateTop5() {
+		String scoreboard = "";
 	}
 
 	/**
@@ -199,5 +201,128 @@ public class VideoGame {
 		return pos;
 	}
 
+	public String getAllTreasures(){
+		int total = 0;
+		String msj ="";
+		for (int i = 0; i<canvas.getLevels().length; i++){
+			total+=canvas.getLevels()[i].countTresuresValue();
+		}
+		return msj = "En todos los niveles hay un total de "+total+" Diamantes";
+	}
+	public String getAllEnemiesType(int type){
+		Type toSearch = giveType(type);
+		int total = 0;
+		String msj;
+		for (int i = 0; i<canvas.getLevels().length; i++){
+			total +=canvas.getLevels()[i].countEnemiesByType(toSearch);
+			
+		}
+		return msj = "En todos los niveles hay un total de "+total+" "+toSearch+"(s)";
+	}
+	public Type giveType(int type){
+		Type newType = Type.indefinido;
+		if(type == 1){
+			newType = Type.ogro;         
+		}  
+		if(type == 2){
+			newType = Type.abstracto;
+		}
+		if(type == 3){
+			newType = Type.jefe;
+		}
+		if(type == 4){
+			newType = Type.magico;
+		}
+		return newType;
+	}
+
+	public String getModeTreasure() {
+		String msj = "";
+        ArrayList<int[]> treasureValues = new ArrayList<int[]>();
+        int value = 0;
+		boolean isAdded;
+        int[] values = new int[]{0, 0};
+		treasureValues.add(values);
+		for(int i = 0; i<canvas.getLevels().length; i++){
+			for(int j = 0; j<canvas.getLevels()[0].getTreasures().length; j++){
+				if(canvas.getLevels()[i].getTreasures()[j]!=null){
+					values = new int[]{canvas.getLevels()[i].getTreasures()[j].getValue(), 1};
+					isAdded = true;
+					for(int k = 0; k<treasureValues.size(); k++){
+						if(treasureValues.get(k)[0]==values[0]){
+							treasureValues.get(k)[1]+=1;
+							isAdded = false;
+						}
+					}
+					if (isAdded == true){
+						treasureValues.add(values);	
+					}
+					
+				}
+			}
+		}
+			int[] max = treasureValues.get(0);
+			int[] min;
+			for(int i = 1; i<treasureValues.size(); i++){
+				min = treasureValues.get(i)	;
+				if(min[1]>max[1]){
+					max = min;
+				}
+			}
+        msj ="El tesoro que mas se repite en todos los niveles son los que contienen "+max[0]+" Diamantes \n"+
+		"Total: "+max[1];
+        return msj;
+	}
+	public String getMaxEnemy(){
+		String msj="No se encontraron enemigos";
+		int pos = -1;
+		int enemyPos= -1;
+		int max = 0;
+		int min = 0;
+		for(int i = 0; i<canvas.getLevels().length; i++){
+			for(int j = 0; j<canvas.getLevels()[0].getEnemies().length; j++){
+				
+				if (canvas.getLevels()[i].getEnemies()[j]!=null){
+					min = canvas.getLevels()[i].getEnemies()[j].getLoot();
+					if(min > max){
+						max = min;
+						pos = i;
+						enemyPos = j;
+					}
+				}
+			}
+		}
+		if (enemyPos != -1 && pos != -1){
+			msj = "El enemigo que mas puntos otorga es un "+canvas.getLevels()[pos].getEnemies()[enemyPos].getType()+" en el nivel "+(pos+1)+"\n"+
+			"Puntos en total: "+canvas.getLevels()[pos].getEnemies()[enemyPos].getLoot();
+		}
+		return msj;
+	}
+
+	public String getALLConsonants(){
+		String msj = "";
+		int contador = 0;
+		String enemyName = "";
+		String consonantes ="bcdfghjklmnpqrstvwxyz"; 
+		for(int i = 0; i<canvas.getLevels().length; i++){
+			for(int j = 0; j<canvas.getLevels()[0].getEnemies().length; j++){
+				if (canvas.getLevels()[i].getEnemies()[j]!=null){
+					enemyName = canvas.getLevels()[i].getEnemies()[j].getName();
+					for(int k = 0; k<consonantes.length(); k++){
+						for(int l= 0; l<enemyName.length(); l++){
+							if(enemyName.charAt(l)==consonantes.charAt(k)){
+								contador++;
+							}
+						
+						}
+					}
+				}
+			}
+		
+		
+		}
+		return msj ="En el juego los enemigos tienen un total de "+contador+" consonantes en sus nombres";
+	}
 }
+
 

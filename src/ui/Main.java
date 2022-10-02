@@ -29,6 +29,13 @@ public class Main{
         "3. Registra tesoro a un nivel \n"+
         "4. Modificar el puntaje de un jugador \n"+
         "5. Subir de nivel a un jugador \n"+
+        "6. Informar los tesoros y enemigos de un nivel dado \n"+
+        "7. Informar valor de los tesoros en los niveles \n"+
+        "8. Informar cantidad un tipo de enemigo en los niveles \n"+
+        "9. Informar el tesoro que mas se repite \n"+
+        "10. Informar el enemigo que da mas puntos y su nivel \n"+
+        "11. Informar la cantidad de consonantes encontradas en los nombres de los enemigos del juego \n"+
+        "12. Informar el top 5 de jugadores segun su puntaje \n"+
         "0. Salir");
         option = reader.nextInt();
 
@@ -41,6 +48,7 @@ public class Main{
         int loot;
         String id;
         String url;
+        int type = 0;
         switch(option){
             case 1:
                 System.out.println("Inserte su nickname");
@@ -51,7 +59,7 @@ public class Main{
             break;
 
             case 2: 
-                int type = 0;
+                
                 do{
                     System.out.println("1. Ogro \n"+
                     "2. Abstracto \n"+
@@ -71,7 +79,7 @@ public class Main{
                 attack = reader.nextInt();
                 System.out.println("Inserte los puntons que le AUMENTA al jugador");
                 loot = reader.nextInt();
-                System.out.println(videoGame.addEnemyToLevel(new Enemy(name, attack, loot, type), id)); 
+                System.out.println(videoGame.addEnemyToLevel(new Enemy(name.toLowerCase(), attack, loot), id, type)); 
                 break;
 
             case 3:
@@ -81,7 +89,7 @@ public class Main{
                 name = reader.next();
                 System.out.println("Inserte el nombre la url de la imagen del tesoro");
                 url = reader.next();
-                System.out.println("Inserte los puntons que le AUMENTA al jugador");
+                System.out.println("Inserte cuantos diamantes tendra este tesoro");
                 loot = reader.nextInt();
                 System.out.println(videoGame.addTreasureToLevel(id, new Treasure(name, url, loot) ));   
             break;
@@ -99,12 +107,45 @@ public class Main{
                 nick = reader.next();
                 System.out.println(videoGame.upgradePlayer(nick))   ;
             break;
+            case 6:
             
+            break;
+            case 7:
+                System.out.println(videoGame.getAllTreasures());
+            break;
+            case 8:
+                do{
+                    System.out.println("1. Ogro \n"+
+                    "2. Abstracto \n"+
+                    "3. Jefe \n"+
+                    "4. Magico \n");
+                    System.out.println("Digite el numero de tipo de enemigo");
+                    type = reader.nextInt();
+                    if(type<1 || type>4){
+                        System.out.println("Opcion invalid");
+                    }
+                }while(type<1 || type>4);
+                System.out.println(videoGame.getAllEnemiesType(type));    
+                    
+            break;
+            case 9:
+                System.out.println(videoGame.getModeTreasure());
+            break;
+            case 10:
+                System.out.println(videoGame.getMaxEnemy());
+            break;
+            case 11:
+                System.out.println(videoGame.getALLConsonants());
+            break;
+            case 12:
+
+            break;
             case 0:
                 System.out.println("Bye uwu");
             break;
             default:
                 System.out.println("Opcion invalida");
+
             break;
         }
 
