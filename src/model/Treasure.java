@@ -7,7 +7,8 @@ import java.lang.Math;
 public class Treasure {
 
 	private String name;
-	private String url;
+
+    private String url;
     private int value;
     private double Xpos;
 	private double Ypos;
@@ -16,8 +17,8 @@ public class Treasure {
 		this.name = name;
         this.url = url;
         this.value = value;
-        Xpos =  (Math.random()*719);
-        Ypos =  (Math.random()*1079);
+        Xpos =  (Math.random()*1279);
+        Ypos =  (Math.random()*719);
         
 	}   
 
@@ -26,5 +27,8 @@ public class Treasure {
         }
     public String getUrl() {
             return url;
+        }
+        public String getName() {
+            return name;
         }
 }

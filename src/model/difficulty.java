@@ -1,6 +1,6 @@
 package model;
 
-enum Difficulty {
+public enum Difficulty {
 	indefinida,
 	alto,
 	medio,

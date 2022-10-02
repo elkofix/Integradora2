@@ -1,9 +1,9 @@
 package model;
 
-enum Type {
+public enum Type {
 	indefinido,
-	ogros,
-	abstractos,
-	jefes,
-	magicos
+	ogro,
+	abstracto,
+	jefe,
+	magico
 }

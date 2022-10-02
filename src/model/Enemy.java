@@ -1,4 +1,3 @@
-
 package model;
 import java.lang.Math;
 
@@ -6,21 +5,21 @@ import java.lang.Math;
 public class Enemy {
 
 	private String name;
-	private double attack;
+    private double attack;
 	private double loot;
-
-
     private double Xpos;
 	private double Ypos;
     private Type type;
 
-	public Enemy(String name, int attack, int loot, int type) {
+	
+
+    public Enemy(String name, int attack, int loot, int type) {
         this.name = name;
         this.attack = attack;
         this.loot = loot;
         this.type = giveType(type);
-        Xpos =  (Math.random()*719);
-        Ypos =  (Math.random()*1079);
+        Xpos =  (Math.random()*1279);
+        Ypos =  (Math.random()*719);
 	}
 
     public Type giveType(int type){
@@ -44,5 +43,14 @@ public class Enemy {
     public double getLoot() {
         return loot;
     }
+
+    public Type getType() {
+        return type;
+    }
+    
+	public String getName() {
+        return name;
+    }
+
 
 }
