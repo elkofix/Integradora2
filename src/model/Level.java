@@ -82,34 +82,7 @@ public class Level {
         return value;
 	}
 
-	public int[] getModeTreasure() {
-        ArrayList<int[]> treasureValues = new ArrayList<int[]>();
-        int value = 0;
-        int[] values = new int[]{0, 0};
-        for (int i = 0; i<treasures.length; i++){
-            if (treasures[i] != null){
-                value=treasures[i].getValue();
-                for(int j = 0; j<treasureValues.size(); j++){
-                    if (value==treasureValues.get(j)[0]){
-                        treasureValues.get(j)[1]+=1;
-                    }else{
-                        values[0] = value;
-                        values[1] = 1;
-                        treasureValues.add(values);
-                    }
-                }
-            }
-        }
-        int[] max = treasureValues.get(0);
-        int[] min;
-        for(int i = 1; i<treasureValues.size(); i++){
-            min = treasureValues.get(i);
-            if(min[1]>max[1]){
-                max = min;
-            }
-        }
-        return max;
-	}
+	
 
     public int enemyHasEmptyPos(){
         int pos = -1;

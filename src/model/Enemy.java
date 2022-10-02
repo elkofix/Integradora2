@@ -6,7 +6,12 @@ public class Enemy {
 
 	private String name;
     private int attack;
-	private int loot;
+	public int getAttack() {
+        return attack;
+    }
+
+
+    private int loot;
     private double Xpos;
 	private double Ypos;
     private Type type;

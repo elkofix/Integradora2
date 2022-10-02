@@ -71,7 +71,7 @@ public class Main{
                         System.out.println("Opcion invalida");
                     }
                 }while(type<1 || type>4);
-                System.out.println("Inserte el id del nivel");
+                System.out.println("Inserte el numero del nivel");
                 id = reader.next();
                 System.out.println("Inserte el nombre del enemigo");
                 name = reader.next();
@@ -83,7 +83,7 @@ public class Main{
                 break;
 
             case 3:
-                System.out.println("Inserte el id del nivel");
+                System.out.println("Inserte el numer del nivel");
                 id = reader.next();
                 System.out.println("Inserte el nombre del tesoro");
                 name = reader.next();
@@ -108,7 +108,9 @@ public class Main{
                 System.out.println(videoGame.upgradePlayer(nick))   ;
             break;
             case 6:
-            
+                System.out.println("Inserte el numero del nivel");
+                id = reader.next();
+                System.out.println(videoGame.showTreasuresAndEnemys(id));
             break;
             case 7:
                 System.out.println(videoGame.getAllTreasures());
@@ -119,7 +121,7 @@ public class Main{
                     "2. Abstracto \n"+
                     "3. Jefe \n"+
                     "4. Magico \n");
-                    System.out.println("Digite el numero de tipo de enemigo");
+                    System.out.println("Inserte el numero de tipo de enemigo");
                     type = reader.nextInt();
                     if(type<1 || type>4){
                         System.out.println("Opcion invalid");
@@ -138,7 +140,7 @@ public class Main{
                 System.out.println(videoGame.getALLConsonants());
             break;
             case 12:
-
+                System.out.println(videoGame.calculateTop5());
             break;
             case 0:
                 System.out.println("Bye uwu");

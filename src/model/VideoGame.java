@@ -18,7 +18,7 @@ public class VideoGame {
 
     public VideoGame(String name){
         this.name = name;
-		players = new Player[10];
+		players = new Player[20];
         canvas = new Canvas(1280, 720);
     }
 
@@ -80,6 +80,25 @@ public class VideoGame {
 			
 		}else{
 			msj = "El nickname ya exise, usa otro";
+		}
+		return msj;
+	}
+	public String showTreasuresAndEnemys(String id){
+		int pos = searchLevelById(id);
+		String msj = "";
+		if (pos !=-1){
+			for (int i = 0; i<canvas.getLevels()[pos].getTreasures().length; i++){
+				if(canvas.getLevels()[pos].getTreasures()[i]!=null){
+					msj += canvas.getLevels()[pos].getTreasures()[i].getName()+" Diamantes: "+canvas.getLevels()[pos].getTreasures()[i].getValue()+", \n";
+				}	
+			}
+			for (int i = 0; i<canvas.getLevels()[pos].getEnemies().length; i++){
+				if(canvas.getLevels()[pos].getEnemies()[i]!=null){
+					msj += canvas.getLevels()[pos].getEnemies()[i].getName()+" Ataque: "+canvas.getLevels()[pos].getEnemies()[i].getAttack()+" Botin "+canvas.getLevels()[pos].getEnemies()[i].getLoot()+", \n";
+				}	
+			}
+		}else{
+			msj ="No se encontro el nivel";
 		}
 		return msj;
 	}
@@ -150,7 +169,36 @@ public class VideoGame {
 	}
 
 	public String calculateTop5() {
-		String scoreboard = "";
+		String scoreboard = "Top 5 jugadores \n";	
+		int min = 0;
+		int max = 0;
+		int pos = -1;
+		ArrayList<Player> holdPlayers = new ArrayList<Player>();
+		Player[] topPlayers = new Player[5];
+		for (int i =0; i<players.length; i++){
+			if (players[i]!=null){
+				holdPlayers.add(players[i]);
+			}	
+		}
+		for(int j = 0; j<topPlayers.length && holdPlayers.size()>0; j++){
+			max = 0;
+			for(int i=0; i<holdPlayers.size(); i++){
+				min = holdPlayers.get(i).getScore();
+				if(min>max){
+					max = min;
+					pos = i;
+				}
+			}
+			if(pos!=-1){ 
+				topPlayers[j] = holdPlayers.get(pos);
+				scoreboard+="Puesto "+(j+1)+": "+holdPlayers.get(pos).getNickname()+" "+holdPlayers.get(pos).getScore()+" Puntos \n";
+				holdPlayers.remove(pos);
+			}
+		}
+		if (pos == -1){
+			scoreboard = "No se encontraron jugadores";
+		}
+		return scoreboard;
 	}
 
 	/**
