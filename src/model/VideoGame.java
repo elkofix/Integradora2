@@ -1,5 +1,5 @@
 package model;
-
+import java.lang.Math;
 import java.util.ArrayList;
 
 public class VideoGame {
@@ -20,8 +20,50 @@ public class VideoGame {
         this.name = name;
 		players = new Player[20];
         canvas = new Canvas(1280, 720);
+		createRandomEnemies();
+		createRandomTreasures();
     }
+	public void createRandomEnemies(){
+		
+		String[] dryNames = new String[]{"Mara_Grand","Bossk_Natasi","C-3PO_Cade","Han_Zam","Revan_PROXY","Grand_Kir","Watto_Bossk","Gilad_Jaina","Zayne_Watto","IG_Jabba","Mace_Kyle","Lando_Jarael","Grand_Bib","Anakin_Cad","Boba_Aayla","Shaak_Cade","Grand_Senator","Chewbacca_C-3PO","Senator_Nom","Galen_Ahsoka","Mission_Zam","Lando_Chewbacca","Qui-Gon_Wedge","Visas_R2-D2","Captain_Admiral"};
+		int randAttack;
+		int randLoot;
+		String randomLvl;
+		int randomType;
+		Enemy[] dryEnemies = new Enemy[dryNames.length];
+		for (int i = 0; i<dryNames.length; i++){
+			randAttack = (int)Math.round(Math.random()*50)+10;
+			randLoot = (int)Math.round(Math.random()*70)+1;
+			dryEnemies[i] = new Enemy(dryNames[i], randAttack, randLoot);
+		}
+		for (int i = 0; i<dryNames.length; i++){
+			randomLvl =((int)Math.round(Math.random()*9)+1)+"";
+			randomType  =(int)Math.round(Math.random()*3)+1;
+			addEnemyToLevel(dryEnemies[i], randomLvl, randomType);
+		}
 
+		
+	}
+	public void createRandomTreasures(){
+		String url = "https://res.cloudinary.com/dnmlo67cy/image/upload/v1664742061/download_rigiyb.jpg";
+		String[] dryNames = new String[50];
+		int randDiamonds;
+		String randomLvl;
+		for (int i = 0; i<dryNames.length; i++){
+			dryNames[i] = "Tesoro"+(i+1);
+		}
+		Treasure[] dryTreasures = new Treasure[dryNames.length];
+		for (int i = 0; i<dryNames.length; i++){
+			randDiamonds = (int)Math.round(Math.random()*50)+1;
+			dryTreasures[i] = new Treasure(dryNames[i], url, randDiamonds);
+		}
+		for (int i = 0; i<dryNames.length; i++){
+			randomLvl =((int)Math.round(Math.random()*9)+1)+"";
+			addTreasureToLevel(randomLvl, dryTreasures[i]);
+		}
+
+		
+	}
     public String upgradePlayer(String nick) {
 		String msj = "";
 		int playerScore = 0;
@@ -255,7 +297,7 @@ public class VideoGame {
 		for (int i = 0; i<canvas.getLevels().length; i++){
 			total+=canvas.getLevels()[i].countTresuresValue();
 		}
-		return msj = "En todos los niveles hay un total de "+total+" Diamantes";
+		return msj = "En total de los niveles hay "+total+" Diamantes";
 	}
 	public String getAllEnemiesType(int type){
 		Type toSearch = giveType(type);
@@ -265,7 +307,7 @@ public class VideoGame {
 			total +=canvas.getLevels()[i].countEnemiesByType(toSearch);
 			
 		}
-		return msj = "En todos los niveles hay un total de "+total+" "+toSearch+"(s)";
+		return msj = "En total de los niveles hay "+total+" "+toSearch+"(s)";
 	}
 	public Type giveType(int type){
 		Type newType = Type.indefinido;
