@@ -107,7 +107,12 @@ public class VideoGame {
         }
         return msj;
 	}
-
+	/**
+	 * Change the score of a specific player
+	 * @param nick nickname of the player
+	 * @param newScore new score to set
+	 * @return confirmatio message
+	 */
 	public String changePlayerScore(String nick, int newScore) {
 		String msj  = "";
 		int pos = searchPlayerbyNick(nick);
@@ -119,7 +124,11 @@ public class VideoGame {
 		}
 		return msj;
 	}
-
+	/**
+	 * Upgrades a player to a higher level if it has enough points
+	 * @param nick nickname of the player
+	 * @return confirmation message
+	 */
 	public String upgradePlayer(String nick) {
 		String msj = "";
 		int playerScore = 0;
@@ -148,7 +157,11 @@ public class VideoGame {
 		}
 		return msj;
 	}
-
+	/**
+	 * Shows the treasures and enemies from a specific level
+	 * @param id id of the level
+	 * @return Resumé of the enemies and treasures
+	 */
 	public String showTreasuresAndEnemys(String id){
 		int pos = searchLevelById(id);
 		String msj = "";
@@ -168,7 +181,10 @@ public class VideoGame {
 		}
 		return msj;
 	}
-
+	/**
+	 * Gets all the diamonds from the treasures of all the levels and add them together
+	 * @return total of diamonds in all the levels
+	 */
 	public String getAllTreasures(){
 		int total = 0;
 		String msj ="";
@@ -178,7 +194,11 @@ public class VideoGame {
 		return msj = "En total de los niveles hay "+total+" Diamantes";
 	}
 
-	
+	/**
+	 * Counts all the enemies in all the levels of a specific type
+	 * @param type type of the enemy
+	 * @return the count of the enemies of the specific type in every levevl
+	 */
 	public String getAllEnemiesType(int type){
 		Type toSearch = giveType(type);
 		int total = 0;
@@ -189,7 +209,10 @@ public class VideoGame {
 		}
 		return msj = "En total de los niveles hay "+total+" "+toSearch+"(s)";
 	}
-
+	/**
+	 * Gets the mode treasure
+	 * @return The treasure thas is found the most
+	 */
 	public String getModeTreasure() {
 		String msj = "";
         ArrayList<int[]> treasureValues = new ArrayList<int[]>();
@@ -227,7 +250,10 @@ public class VideoGame {
 		"Total: "+max[1];
         return msj;
 	}
-
+	/**
+	 * Gets the enemy that gives the most points to the player and the level where is located
+	 * @return the enemy that gives the most points to the player and the level where is located
+	 */
 	public String getMaxEnemy(){
 		String msj="No se encontraron enemigos";
 		int pos = -1;
@@ -253,7 +279,10 @@ public class VideoGame {
 		}
 		return msj;
 	}
-	
+	/**
+	 * Counts the consonants in the names of the enemies in all the levels
+	 * @return count of consonants in the names of the enemies in al the levels
+	 */
 	public String getALLConsonants(){
 		String msj = "";
 		int contador = 0;
@@ -278,7 +307,10 @@ public class VideoGame {
 		}
 		return msj ="En el juego los enemigos tienen un total de "+contador+" consonantes en sus nombres";
 	}
-
+	/**
+	 * Calculates the top 5 players by its score
+	 * @return the scoreboard of the top 5 Players by score
+	 */
 	public String calculateTop5() {
 		String scoreboard = "Top 5 jugadores \n";	
 		int min = 0;
@@ -311,7 +343,9 @@ public class VideoGame {
 		}
 		return scoreboard;
 	}
-	
+	/**
+	 * Creates random enemies with names from https://names.drycodes.com/ and add them to random levels
+	 */
 	public void createRandomEnemies(){
 		
 		String[] dryNames = new String[]{"Mara_Grand","Bossk_Natasi","C-3PO_Cade","Han_Zam","Revan_PROXY","Grand_Kir","Watto_Bossk","Gilad_Jaina","Zayne_Watto","IG_Jabba","Mace_Kyle","Lando_Jarael","Grand_Bib","Anakin_Cad","Boba_Aayla","Shaak_Cade","Grand_Senator","Chewbacca_C-3PO","Senator_Nom","Galen_Ahsoka","Mission_Zam","Lando_Chewbacca","Qui-Gon_Wedge","Visas_R2-D2","Captain_Admiral"};
@@ -333,6 +367,9 @@ public class VideoGame {
 
 		
 	}
+	/**
+	 * creates random treasures and adds the to random levels
+	 */
 	public void createRandomTreasures(){
 		String url = "https://res.cloudinary.com/dnmlo67cy/image/upload/v1664742061/download_rigiyb.jpg";
 		String[] dryNames = new String[50];
@@ -357,31 +394,17 @@ public class VideoGame {
 
 
 	/**
-	 * 
+	 * Levels are generated ramdomly but it will work later if its needed 👍
 	 * @param Level
 	 */
 	public String addLevel(int Level) {
 		// TODO - implement VideoGame.addLevel
 		throw new UnsupportedOperationException();
 	}
-
-
-
-
-
-
 	/**
-	 * 
-	 * @param level
-	 * @param Treasure
-	 */
-
-
-
-
-	/**
-	 * 
-	 * @param nick
+	 * Searches a player by its nick
+	 * @param nick nickname of the player
+	 * @return position of the player if it's found, else -1
 	 */
 	public int searchPlayerbyNick(String nick) {
 		int pos = -1;
@@ -398,8 +421,9 @@ public class VideoGame {
 	}
 
 	/**
-	 * 
-	 * @param Level
+	 * Searches a level by its id
+	 * @param id Id of the leve
+	 * @return position of the level if found, else -1
 	 */
 	public int searchLevelById(String id) {
         int pos = -1;
@@ -415,6 +439,10 @@ public class VideoGame {
         }
         return pos;
 	}
+	/**
+	 * Checks if the player array has and empty position
+	 * @return position if its found, else -1
+	 */
 	public int playerHasEmptyPos(){
 		int pos =-1;
 		boolean isFree = false;
@@ -427,7 +455,11 @@ public class VideoGame {
 		return pos;
 	}
 
-
+	/**
+	 * gives a enum type depending of the interger choose 
+	 * @param type interger choosen
+	 * @return enum type
+	 */
 	public Type giveType(int type){
 		Type newType = Type.indefinido;
 		if(type == 1){
@@ -445,10 +477,18 @@ public class VideoGame {
 		return newType;
 	}
 
+	/**
+	 * gets the canvas object
+	 * @return canvas object
+	 */
     public Canvas getCanvas() {
         return canvas;
     }
 
+	/**
+	 * gets the name of the game
+	 * @return name of the game
+	 */
     public String getName() {
         return name;
     }
