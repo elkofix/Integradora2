@@ -126,8 +126,14 @@ public class VideoGame {
 			}else{
 				for(int i = 0; i<canvas.getLevels().length; i++){
 					if(playerScore>canvas.getLevels()[i].getReachPoints()){
-						players[pos].setCurrentlevel(canvas.getLevels()[i+1]);
-						msj = "Felicidades el jugador avanzo hasta el nivel "+canvas.getLevels()[i+1].getId();
+						if (i<canvas.getLevels().length-1){
+							players[pos].setCurrentlevel(canvas.getLevels()[i+1]);
+							msj = "Felicidades el jugador avanzo hasta el nivel "+canvas.getLevels()[i+1].getId();
+						}else{
+							players[pos].setCurrentlevel(canvas.getLevels()[i]);
+							msj = "Felicidades el jugador has superado todos lo niveles";
+						}
+						
 					}
 				}
 				
