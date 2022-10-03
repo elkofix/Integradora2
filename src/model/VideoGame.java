@@ -394,7 +394,7 @@ public class VideoGame {
 
 
 	/**
-	 * Levels are generated ramdomly but it will work later if its needed 👍
+	 * Levels are generated ramdomly righ now but it will work later if its needed 
 	 * @param Level
 	 */
 	public String addLevel(int Level) {

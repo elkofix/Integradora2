@@ -90,7 +90,10 @@ public class Level {
 	}
 
 	
-
+    /**
+     * checks if the enemies array has an empty position
+     * @return position if is found, else -1
+     */
     public int enemyHasEmptyPos(){
         int pos = -1;
         boolean isFree = false;
@@ -103,7 +106,10 @@ public class Level {
         return pos;
         
     }
-
+    /**
+     * checks if the treasures array has an empty position
+     * @return position if is found, else -1
+     */
     public int TreasureHasEmptyPos(){
         int pos = -1;
         boolean isFree = false;
@@ -116,12 +122,11 @@ public class Level {
         return pos;
         
     }
-
-
-    public void setDifficulty(Difficulty difficulty) {
-        this.difficulty = difficulty;
-    }
-
+    /**
+     * Checks if a enemy already exists in the level
+     * @param name name of the enemy
+     * @return if it's found true, else false
+     */
     public boolean isEnemyRepeated(String name){
         boolean isRepeated = false;
             for(int i = 0; i<enemies.length && isRepeated; i++){
@@ -133,6 +138,11 @@ public class Level {
             }
         return isRepeated;
     }
+    /**
+     * Checks if a treasure already exists in the level
+     * @param name name of the treasure
+     * @return if it's found true, else false
+     */
     public boolean isTreasureRepeated(String name){
         boolean isRepeated = false;
             for(int i = 0; i<treasures.length && isRepeated; i++){
@@ -144,16 +154,39 @@ public class Level {
             }
         return isRepeated;
     }
+    /**
+     * sets the difficulty to a new one
+     * @param difficulty new difficulty
+     */
+    public void setDifficulty(Difficulty difficulty) {
+        this.difficulty = difficulty;
+    }
+
+    /**
+     * gets the id of the level
+     * @return id of the level
+     */
     public String getId() {
         return id;
     }
-    
+    /**
+     * get the treasures array
+     * @return treasures array
+     */
 	public Treasure[] getTreasures() {
         return treasures;
     }
+    /**
+     * get the enemies array
+     * @return enemies array
+     */
     public Enemy[] getEnemies() {
         return enemies;
     }
+    /**
+     * gets the points needed to pass the level
+     * @return points needed to pass the level
+     */
     public int getReachPoints() {
         return reachPoints;
     }
