@@ -267,6 +267,40 @@ public class VideoGame {
 		}
 		return msj ="En el juego los enemigos tienen un total de "+contador+" consonantes en sus nombres";
 	}
+
+	public String calculateTop5() {
+		String scoreboard = "Top 5 jugadores \n";	
+		int min = 0;
+		int max = 0;
+		int pos = -1;
+		ArrayList<Player> holdPlayers = new ArrayList<Player>();
+		Player[] topPlayers = new Player[5];
+		for (int i =0; i<players.length; i++){
+			if (players[i]!=null){
+				holdPlayers.add(players[i]);
+			}	
+		}
+		for(int j = 0; j<topPlayers.length && holdPlayers.size()>0; j++){
+			max = 0;
+			for(int i=0; i<holdPlayers.size(); i++){
+				min = holdPlayers.get(i).getScore();
+				if(min>max){
+					max = min;
+					pos = i;
+				}
+			}
+			if(pos!=-1){ 
+				topPlayers[j] = holdPlayers.get(pos);
+				scoreboard+="Puesto "+(j+1)+": "+holdPlayers.get(pos).getNickname()+" "+holdPlayers.get(pos).getScore()+" Puntos \n";
+				holdPlayers.remove(pos);
+			}
+		}
+		if (pos == -1){
+			scoreboard = "No se encontraron jugadores";
+		}
+		return scoreboard;
+	}
+	
 	public void createRandomEnemies(){
 		
 		String[] dryNames = new String[]{"Mara_Grand","Bossk_Natasi","C-3PO_Cade","Han_Zam","Revan_PROXY","Grand_Kir","Watto_Bossk","Gilad_Jaina","Zayne_Watto","IG_Jabba","Mace_Kyle","Lando_Jarael","Grand_Bib","Anakin_Cad","Boba_Aayla","Shaak_Cade","Grand_Senator","Chewbacca_C-3PO","Senator_Nom","Galen_Ahsoka","Mission_Zam","Lando_Chewbacca","Qui-Gon_Wedge","Visas_R2-D2","Captain_Admiral"};
@@ -332,38 +366,7 @@ public class VideoGame {
 	 */
 
 
-	public String calculateTop5() {
-		String scoreboard = "Top 5 jugadores \n";	
-		int min = 0;
-		int max = 0;
-		int pos = -1;
-		ArrayList<Player> holdPlayers = new ArrayList<Player>();
-		Player[] topPlayers = new Player[5];
-		for (int i =0; i<players.length; i++){
-			if (players[i]!=null){
-				holdPlayers.add(players[i]);
-			}	
-		}
-		for(int j = 0; j<topPlayers.length && holdPlayers.size()>0; j++){
-			max = 0;
-			for(int i=0; i<holdPlayers.size(); i++){
-				min = holdPlayers.get(i).getScore();
-				if(min>max){
-					max = min;
-					pos = i;
-				}
-			}
-			if(pos!=-1){ 
-				topPlayers[j] = holdPlayers.get(pos);
-				scoreboard+="Puesto "+(j+1)+": "+holdPlayers.get(pos).getNickname()+" "+holdPlayers.get(pos).getScore()+" Puntos \n";
-				holdPlayers.remove(pos);
-			}
-		}
-		if (pos == -1){
-			scoreboard = "No se encontraron jugadores";
-		}
-		return scoreboard;
-	}
+
 
 	/**
 	 * 
