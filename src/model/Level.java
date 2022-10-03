@@ -14,9 +14,9 @@ public class Level {
 
 
     /**
-	 * 
-	 * @param id
-	 * @param reachPoints
+	 * Constructor of Level class
+	 * @param id id of the level
+	 * @param reachPoints points to reach the level
 	 */
 	public Level(String id, int reachPoints) {
 		this.id = id;
@@ -26,7 +26,9 @@ public class Level {
         treasures = new Treasure[50];
 
 	}
-
+    /**
+     * Calculates the dificulty of the level depenging on the points that treasures and enemies give
+     */
 	public void calculateDifficulty() {
 		Difficulty newDifficulty = Difficulty.indefinida;
         if(countEnemiesLoot()<countTresuresValue()){
@@ -40,6 +42,10 @@ public class Level {
         }
         setDifficulty(newDifficulty);
 	}
+    /**
+     * counts all the ponints the enemies give
+     * @return total of the point the enemies in the level give
+     */
     public int countEnemiesLoot(){
         int loot = 0;
         for (int i = 0; i<enemies.length; i++){
@@ -49,6 +55,13 @@ public class Level {
         }
         return loot;
     }
+
+    /**
+     * counts the enemies by a specific type
+     * @param type type of enemy
+     * @return count of enemies of a specific type
+     */
+    
 	public int countEnemiesByType(Type type) {
         int enemiesFound = 0;
         for (int i = 0; i<enemies.length; i++){
@@ -61,17 +74,11 @@ public class Level {
         }
 		return enemiesFound;
 	}
-
-	public int countTreasuresTotal() {
-        int value = 0;
-        for (int i = 0; i<treasures.length; i++){
-            if (treasures[i] != null){
-                value++;
-            }
-        }
-        return value;
-	}
-
+    
+    /**
+     *Counts the total diamonds the treasures give 
+     * @return count of the diamonds every treasure give
+     */
 	public int countTresuresValue() {
 		int value = 0;
         for (int i = 0; i<treasures.length; i++){
