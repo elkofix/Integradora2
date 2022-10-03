@@ -1,0 +1,1 @@
+typeSearchIndex = [{"l":"All Classes","u":"allclasses-index.html"},{"p":"model","l":"Canvas"},{"p":"model","l":"Difficulty"},{"p":"model","l":"Enemy"},{"p":"model","l":"Level"},{"p":"ui","l":"Main"},{"p":"model","l":"Player"},{"p":"model","l":"Treasure"},{"p":"model","l":"Type"},{"p":"model","l":"VideoGame"}];updateSearchResults();

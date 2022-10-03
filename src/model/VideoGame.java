@@ -1,7 +1,9 @@
 package model;
 import java.lang.Math;
 import java.util.ArrayList;
-
+/**
+ * Model of a videogame class
+ */
 public class VideoGame {
     private String name;
     private Canvas canvas;
@@ -44,8 +46,9 @@ public class VideoGame {
 
 	/**
 	 * Adds an enemy to a specific level
-	 * @param level id of the level
-	 * @param Enemy Enemy object to be added
+	 * @param levelid id of the level
+	 * @param enemy Enemy object to be added
+	 * @param type type of the enemy
 	 * @return confirmation message
 	 */
 	public String addEnemyToLevel(Enemy enemy, String levelid, int type) {
@@ -395,7 +398,8 @@ public class VideoGame {
 
 	/**
 	 * Levels are generated ramdomly righ now but it will work later if its needed 
-	 * @param Level
+	 * @param Level level to bel added
+	 * @return confirmation message
 	 */
 	public String addLevel(int Level) {
 		// TODO - implement VideoGame.addLevel
