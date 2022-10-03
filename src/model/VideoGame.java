@@ -7,15 +7,10 @@ public class VideoGame {
     private Canvas canvas;
 	private Player[] players;
 
-
-    public Canvas getCanvas() {
-        return canvas;
-    }
-
-    public String getName() {
-        return name;
-    }
-
+	/**
+	 * Constructor of the Videogame Class
+	 * @param name name of the videogame
+	 */
     public VideoGame(String name){
         this.name = name;
 		players = new Player[20];
@@ -23,7 +18,11 @@ public class VideoGame {
 		createRandomEnemies();
 		createRandomTreasures();
     }
-
+	/**
+	 * Add a player to the game
+	 * @param newPlayer Player objecto to add to the game
+	 * @return confirmation message
+	 */
 	public String addPlayer(Player newPlayer) {
 		int pos = searchPlayerbyNick(newPlayer.getNickname());
 		String msj = "";
@@ -44,9 +43,10 @@ public class VideoGame {
 	}
 
 	/**
-	 * 
-	 * @param level
-	 * @param Enemy
+	 * Adds an enemy to a specific level
+	 * @param level id of the level
+	 * @param Enemy Enemy object to be added
+	 * @return confirmation message
 	 */
 	public String addEnemyToLevel(Enemy enemy, String levelid, int type) {
 		int pos = searchLevelById(levelid);
@@ -75,7 +75,12 @@ public class VideoGame {
         }
         return msj;
 	}
-
+	/**
+	 * Adds a treasure to a specific level
+	 * @param levelid id of the level
+	 * @param newTreasure Treasure object to add
+	 * @return confirmarion message
+	 */
 	public String addTreasureToLevel(String levelid, Treasure newTreasure) {
 		int pos = searchLevelById(levelid);
 		boolean isRepeated;
@@ -439,6 +444,15 @@ public class VideoGame {
 		}
 		return newType;
 	}
+
+    public Canvas getCanvas() {
+        return canvas;
+    }
+
+    public String getName() {
+        return name;
+    }
+
 
 
 
