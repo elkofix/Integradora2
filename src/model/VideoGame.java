@@ -122,6 +122,7 @@ public class VideoGame {
 		if(pos==-1){
 			msj = "No se encontro al jugador";
 		}else{
+			newScore += players[pos].getScore();
 			players[pos].setScore(newScore);
 			msj = "Puntaje actualizado";
 		}

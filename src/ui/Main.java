@@ -33,7 +33,7 @@ public class Main{
         "7. Informar valor de los tesoros en los niveles \n"+
         "8. Informar cantidad un tipo de enemigo en los niveles \n"+
         "9. Informar el tesoro que mas se repite \n"+
-        "10. Informar el enemigo que da mas puntos y su nivel \n"+
+        "10. Informar el enemigo que da mas puntos y su nivel \n"+  
         "11. Informar la cantidad de consonantes encontradas en los nombres de los enemigos del juego \n"+
         "12. Informar el top 5 de jugadores segun su puntaje \n"+
         "0. Salir");
@@ -97,7 +97,7 @@ public class Main{
             case 4:
                 System.out.println("Inserte el nickname del jugador");
                 nick = reader.next();
-                System.out.println("Inserte el nuevo puntaje");
+                System.out.println("Inserte el puntaje a sumarle");
                 loot = reader.nextInt();
                 System.out.println(videoGame.changePlayerScore(nick, loot));
 
