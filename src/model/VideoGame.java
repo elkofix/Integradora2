@@ -51,22 +51,24 @@ public class VideoGame {
 	 * @param type type of the enemy
 	 * @return confirmation message
 	 */
-	public String addEnemyToLevel(Enemy enemy, String levelid, int type) {
+	public String addEnemyToLevel(String name, int attack, int loot, String levelid, int type) {
 		int pos = searchLevelById(levelid);
 		boolean isRepeated;
         int enemyPos;
+		Enemy newEnemy = null;
         String msj ="";
         if (pos==-1){
             msj = "No se encontro el nivel";
         }else{
-			isRepeated = canvas.getLevels()[pos].isEnemyRepeated(enemy.getName());
+			isRepeated = canvas.getLevels()[pos].isEnemyRepeated(name);
 			if (!isRepeated){
 				enemyPos = canvas.getLevels()[pos].enemyHasEmptyPos();
             	if(enemyPos ==-1){
                 	msj = "La capacidad de enemigos esta en su limite";
            		}else{
-					enemy.setType(giveType(type));
-                	canvas.getLevels()[pos].getEnemies()[enemyPos]=enemy;
+					newEnemy = new Enemy(name, attack, loot);
+					newEnemy.setType(giveType(type));
+                	canvas.getLevels()[pos].getEnemies()[enemyPos]=newEnemy;
 					canvas.getLevels()[pos].calculateDifficulty();
                 	msj = "Enemigo agregado";
 

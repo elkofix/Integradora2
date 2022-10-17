@@ -79,7 +79,7 @@ public class Main{
                 attack = reader.nextInt();
                 System.out.println("Inserte los puntons que le AUMENTA al jugador");
                 loot = reader.nextInt();
-                System.out.println(videoGame.addEnemyToLevel(new Enemy(name.toLowerCase(), attack, loot), id, type)); 
+                System.out.println(videoGame.addEnemyToLevel(name.toLowerCase(), attack, loot, id, type)); 
                 break;
 
             case 3:
