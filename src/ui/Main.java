@@ -37,7 +37,13 @@ public class Main{
         "11. Informar la cantidad de consonantes encontradas en los nombres de los enemigos del juego \n"+
         "12. Informar el top 5 de jugadores segun su puntaje \n"+
         "0. Salir");
-        option = reader.nextInt();
+        if (reader.hasNextInt()) {
+            option = reader.nextInt();      
+        }else{
+            option = -1;
+            reader.nextLine();
+        }
+        
 
         return option;
     }
