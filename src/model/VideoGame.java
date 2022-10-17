@@ -86,20 +86,22 @@ public class VideoGame {
 	 * @param newTreasure Treasure object to add
 	 * @return confirmarion message
 	 */
-	public String addTreasureToLevel(String levelid, Treasure newTreasure) {
+	public String addTreasureToLevel(String levelid, String name, String url, int value) {
 		int pos = searchLevelById(levelid);
 		boolean isRepeated;
         int treasurePos;
         String msj ="";
+		Treasure newTreasure = null;
         if (pos==-1){
             msj = "No se encontro el nivel";
         }else{
-			isRepeated = canvas.getLevels()[pos].isTreasureRepeated(newTreasure.getName());
+			isRepeated = canvas.getLevels()[pos].isTreasureRepeated(name);
 			if (!isRepeated){
 				treasurePos = canvas.getLevels()[pos].TreasureHasEmptyPos();
             	if(treasurePos ==-1){
                 	msj = "La capacidad de enemigos esta en su limite";
            		}else{
+					newTreasure = new Treasure(name, url, value);
                 	canvas.getLevels()[pos].getTreasures()[treasurePos]=newTreasure;
 					canvas.getLevels()[pos].calculateDifficulty();
                 	msj = "Tesoro agregado";

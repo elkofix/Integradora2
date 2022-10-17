@@ -91,7 +91,7 @@ public class Main{
                 url = reader.next();
                 System.out.println("Inserte cuantos diamantes tendra este tesoro");
                 loot = reader.nextInt();
-                System.out.println(videoGame.addTreasureToLevel(id, new Treasure(name, url, loot) ));   
+                System.out.println(videoGame.addTreasureToLevel(id, name, url, loot));   
             break;
 
             case 4:
