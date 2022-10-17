@@ -30,17 +30,17 @@ public class Level {
      * Calculates the dificulty of the level depenging on the points that treasures and enemies give
      */
 	public void calculateDifficulty() {
-		Difficulty newDifficulty = Difficulty.indefinida;
+		difficulty = Difficulty.indefinida;
         if(countEnemiesLoot()<countTresuresValue()){
-            newDifficulty = Difficulty.bajo;
+            difficulty = Difficulty.bajo;
         }
         if(countEnemiesLoot()==countTresuresValue()){
-            newDifficulty = Difficulty.medio;
+            difficulty = Difficulty.medio;
         }
         if(countEnemiesLoot()>countTresuresValue()){
-            newDifficulty = Difficulty.alto;
+            difficulty = Difficulty.alto;
         }
-        setDifficulty(newDifficulty);
+    
 	}
     /**
      * counts all the ponints the enemies give
