@@ -25,14 +25,14 @@ public class VideoGame {
 	 * @param newPlayer Player objecto to add to the game
 	 * @return confirmation message
 	 */
-	public String addPlayer(Player newPlayer) {
-		int pos = searchPlayerbyNick(newPlayer.getNickname());
+	public String addPlayer(String nickname, String name) {
+		int pos = searchPlayerbyNick(nickname);
 		String msj = "";
-
+		
 		if (pos==-1){
 			pos = playerHasEmptyPos();
 			if(pos!=-1){
-				players[pos] = newPlayer;
+				players[pos] = new Player(nickname, name, canvas.getLevels()[0]);
 				msj = "Jugador agregado";
 			}else{
 				msj = "Nuestra capacidad de jugadores ya esta en su limite";

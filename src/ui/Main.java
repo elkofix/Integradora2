@@ -55,7 +55,7 @@ public class Main{
                 nick = reader.next();
                 System.out.println("Inserte su nombre");
                 name = reader.next();
-                System.out.println(videoGame.addPlayer(new Player(nick, name, videoGame.getCanvas().getLevels()[0])));
+                System.out.println(videoGame.addPlayer(nick, name));
             break;
 
             case 2: 
