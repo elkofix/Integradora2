@@ -14,6 +14,7 @@ public class VideoGame {
 	 * @param name name of the videogame
 	 */
     public VideoGame(String name){
+		canvas = new Canvas();
         this.name = name;
 		players = new Player[20];
 		createRandomEnemies();
@@ -356,20 +357,23 @@ public class VideoGame {
 		String enemyName = "";
 		String consonantes ="bcdfghjklmnpqrstvwxyz"; 
 		for(int i = 0; i<canvas.getLevels().length; i++){
-			for(int j = 0; j<canvas.getLevels()[0].getEnemies().length; j++){
-				if (canvas.getLevels()[i].getEnemies()[j]!=null){
-					enemyName = canvas.getLevels()[i].getEnemies()[j].getName();
-					for(int k = 0; k<consonantes.length(); k++){
-						for(int l= 0; l<enemyName.length(); l++){
-							if(enemyName.charAt(l)==consonantes.charAt(k)){
-								contador++;
+			if(canvas.getLevels()[0]!=null){}
+				for(int j = 0; j<canvas.getLevels()[0].getEnemies().length; j++){
+					if (canvas.getLevels()[i]!=null){
+						if (canvas.getLevels()[i].getEnemies()[j]!=null){
+							enemyName = canvas.getLevels()[i].getEnemies()[j].getName();
+							for(int k = 0; k<consonantes.length(); k++){
+								for(int l= 0; l<enemyName.length(); l++){
+									if(enemyName.charAt(l)==consonantes.charAt(k)){
+										contador++;
+									}
+								
+								}
 							}
-						
 						}
 					}
-				}
-			}
-		
+				}	
+			
 		
 		}
 		return msj ="En el juego los enemigos tienen un total de "+contador+" consonantes en sus nombres";

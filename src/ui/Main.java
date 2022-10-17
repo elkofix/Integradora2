@@ -2,7 +2,7 @@ package ui;
 
 import java.util.Scanner;
 import model.VideoGame;
-import model.*;
+
 
 public class Main{
 
