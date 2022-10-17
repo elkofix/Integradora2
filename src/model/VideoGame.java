@@ -79,6 +79,34 @@ public class VideoGame {
         }
         return msj;
 	}
+
+	public String addEnemyToLevel(Enemy enemy, String levelid, int type) {
+		int pos = searchLevelById(levelid);
+		boolean isRepeated;
+        int enemyPos;
+        String msj ="";
+        if (pos==-1){
+            msj = "No se encontro el nivel";
+        }else{
+			isRepeated = canvas.getLevels()[pos].isEnemyRepeated(enemy.getName());
+			if (!isRepeated){
+				enemyPos = canvas.getLevels()[pos].enemyHasEmptyPos();
+            	if(enemyPos ==-1){
+                	msj = "La capacidad de enemigos esta en su limite";
+           		}else{
+					enemy.setType(giveType(type));
+                	canvas.getLevels()[pos].getEnemies()[enemyPos]=enemy;
+					canvas.getLevels()[pos].calculateDifficulty();
+                	msj = "Enemigo agregado";
+
+            	}
+			}else{
+				msj = "El enemigo ya existe en este nivel";
+			}
+            
+        }
+        return msj;
+	}
 	/**
 	 * Adds a treasure to a specific level
 	 * @param levelid id of the level
@@ -101,6 +129,38 @@ public class VideoGame {
                 	msj = "La capacidad de enemigos esta en su limite";
            		}else{
 					newTreasure = new Treasure(name, url, value);
+                	canvas.getLevels()[pos].getTreasures()[treasurePos]=newTreasure;
+					canvas.getLevels()[pos].calculateDifficulty();
+                	msj = "Tesoro agregado";
+
+            	}
+			}else{
+				msj = "El tesoro ya existe en este nivel";
+			}
+            
+        }
+        return msj;
+	}
+	/**
+	 * Adds a treasure to a specific level
+	 * @param levelid id of the level
+	 * @param newTreasure Treasure object to add
+	 * @return confirmarion message
+	 */
+	public String addTreasureToLevel(String levelid, Treasure newTreasure) {
+		int pos = searchLevelById(levelid);
+		boolean isRepeated;
+        int treasurePos;
+        String msj ="";
+        if (pos==-1){
+            msj = "No se encontro el nivel";
+        }else{
+			isRepeated = canvas.getLevels()[pos].isTreasureRepeated(newTreasure.getName());
+			if (!isRepeated){
+				treasurePos = canvas.getLevels()[pos].TreasureHasEmptyPos();
+            	if(treasurePos ==-1){
+                	msj = "La capacidad de enemigos esta en su limite";
+           		}else{
                 	canvas.getLevels()[pos].getTreasures()[treasurePos]=newTreasure;
 					canvas.getLevels()[pos].calculateDifficulty();
                 	msj = "Tesoro agregado";
