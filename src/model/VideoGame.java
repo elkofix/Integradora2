@@ -16,7 +16,6 @@ public class VideoGame {
     public VideoGame(String name){
         this.name = name;
 		players = new Player[20];
-        canvas = new Canvas(1280, 720);
 		createRandomEnemies();
 		createRandomTreasures();
     }

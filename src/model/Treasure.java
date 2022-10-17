@@ -22,8 +22,8 @@ public class Treasure {
 		this.name = name;
         this.url = url;
         this.value = value;
-        Xpos =  (Math.random()*1279)+1;
-        Ypos =  (Math.random()*719)+1;
+        Xpos =  (Math.random()*Canvas.X_LENGTH-1)+1;
+        Ypos =  (Math.random()*Canvas.Y_LENGTH-1)+1;
         
 	}   
     /**

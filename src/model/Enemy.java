@@ -18,8 +18,8 @@ public class Enemy {
         this.attack = attack;
         this.loot = loot;
         type = Type.indefinido;
-        Xpos =  (Math.random()*1279)+1;
-        Ypos =  (Math.random()*719)+1;
+        Xpos =  (Math.random()*Canvas.X_LENGTH-1)+1;
+        Ypos =  (Math.random()*Canvas.Y_LENGTH-1)+1;
 	}
     /**
      * gets the points it substracts to the player if its victorious
