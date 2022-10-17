@@ -22,7 +22,8 @@ public class VideoGame {
     }
 	/**
 	 * Add a player to the game
-	 * @param newPlayer Player objecto to add to the game
+	 * @param nickname Player's nickname
+	 * @param name Player's name
 	 * @return confirmation message
 	 */
 	public String addPlayer(String nickname, String name) {
@@ -47,7 +48,9 @@ public class VideoGame {
 	/**
 	 * Adds an enemy to a specific level
 	 * @param levelid id of the level
-	 * @param enemy Enemy object to be added
+	 * @param name enemy's name
+	 * @param attack enemy's number of points that substract to the player
+	 * @param loot enemy's number of diamonds that gives to the player
 	 * @param type type of the enemy
 	 * @return confirmation message
 	 */
@@ -80,7 +83,13 @@ public class VideoGame {
         }
         return msj;
 	}
-
+	/**
+	 * Adds an enemy to a specific level
+	 * @param levelid id of the level
+	 * @param enemy Enemy object to be added
+	 * @param type type of the enemy
+	 * @return confirmation message
+	 */
 	public String addEnemyToLevel(Enemy enemy, String levelid, int type) {
 		int pos = searchLevelById(levelid);
 		boolean isRepeated;
@@ -111,7 +120,9 @@ public class VideoGame {
 	/**
 	 * Adds a treasure to a specific level
 	 * @param levelid id of the level
-	 * @param newTreasure Treasure object to add
+	 * @param name Treasure´s name
+	 * @param url url of the image that represents the treasure
+	 * @param value number of diamonds that the treasure contains
 	 * @return confirmarion message
 	 */
 	public String addTreasureToLevel(String levelid, String name, String url, int value) {
@@ -371,7 +382,7 @@ public class VideoGame {
 								}
 							}
 						}
-					}
+					}	
 				}	
 			
 		
